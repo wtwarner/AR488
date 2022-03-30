@@ -1,0 +1,780 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Command Reference" href="commands.html" /><link rel="prev" title="AR488 GPIB Controller" href="../index.html" />
+
+    <meta name="generator" content="sphinx-4.5.0, furo 2021.11.16"/>
+        <title>Configuration - AR488 0.49.14 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=916d6ed8f59335acffa15474ff504849343d4c76" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=0af69da206d614734f649b27d4cdc2dd6c31f41d" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  body[data-theme="dark"] {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    body:not([data-theme="light"]) {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+  }
+</style></head>
+  <body>
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" />
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="10" y1="12" x2="20" y2="12" />
+      <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">AR488 0.49.14 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">AR488 0.49.14 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands.html">Command Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html">Building an AR488 GPIB Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Working with EZGPIB and KE5FX</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="appendixes.html">Appendixes</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../boards/gpib.html">GPIB IEEE-488 connector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../boards/uno_nano.html">Arduino Uno and Nano</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../boards/mega2560.html">Arduino Mega 2560</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../boards/micro.html">Arduino Micro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../boards/leonardo_r3.html">Arduino Leonardo R3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xdiag.html">XDIAG command notes</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="configuration">
+<span id="id1"></span><h1>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h1>
+<p>Configuration of the AR488 is achieved be editing the <cite>AR488_Config.h</cite> file. This is a
+C++ style header file containing various definition statements, also known as ‘define
+macros’ , starting with keyword <cite>#define</cite>, that can be used to configure the firmware.
+The <cite>AR488_config.h</cite> file must be included in the main AR488 sketch as well as any other
+module header file (e.g. <cite>AR488_Layouts.cpp</cite> and <cite>AR488_Layouts.h</cite>) with an include
+statement:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include "AR488_Config.h</span>
+</pre></div>
+</div>
+<p>A number of these definition statements are contained within an <code class="docutils literal notranslate"><span class="pre">#ifdef</span> <span class="pre">..</span> <span class="pre">#endif</span></code>
+construct, some of which may contain additional #else or #elif elements. The presence of
+these constructs is necessary and they should not be changed or removed. Only the
+definitions within them should be changed as required. Nothing should need to be changed
+in any other file.</p>
+<section id="firmware-version">
+<h2>Firmware version<a class="headerlink" href="#firmware-version" title="Permalink to this headline">¶</a></h2>
+<p>This is in the format:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#define FWVER "AR488 GPIB controller, ver. 0.48.08, 27/01/2020"</span>
+</pre></div>
+</div>
+<p>This entry should not exceed 47 characters and should not be changed.</p>
+</section>
+<section id="board-selection-and-serial-port-configuration">
+<h2>Board Selection and serial port configuration<a class="headerlink" href="#board-selection-and-serial-port-configuration" title="Permalink to this headline">¶</a></h2>
+<p>The AR488 supports a number of Arduino AVR boards and also a custom GPIO pin layout
+which can be defined by the user in the Custom Board Layout section. If a custom GPIO
+pin layout is to be used, then following entry must have the comment characters
+(preceding <code class="docutils literal notranslate"><span class="pre">//</span></code>) removed:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//#define AR488_CUSTOM</span>
+</pre></div>
+</div>
+<p>Otherwise, the comment characters should remain in place which has the effect of
+disabling the definition by designating it as a comment. The compiler ignores comment
+statements. Following this is an <code class="docutils literal notranslate"><span class="pre">#ifdef</span></code> statement containing several sections
+preceded by an <code class="docutils literal notranslate"><span class="pre">#elif</span></code> keyword. Each of these is followed by a token that corresponds
+to known Arduino definitions for microprocessor types. The structure looks like this:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">* Configure the appropriate board/layout section</span>
+<span class="cm">* below as required</span>
+<span class="cm">*/</span><span class="w"></span>
+<span class="cp">#ifdef AR488_CUSTOM</span>
+<span class="p">...</span><span class="w"></span>
+<span class="cp">#elif __AVR_Atmega328P__</span>
+<span class="p">...</span><span class="w"></span>
+<span class="cp">#elif __AVR_Atmega32U4__</span>
+<span class="p">...</span><span class="w"></span>
+<span class="cp">#elif __AVR_Atmega2560__</span>
+<span class="p">...</span><span class="w"></span>
+<span class="cp">#endif </span><span class="c1">// Board/layout selection</span>
+</pre></div>
+</div>
+<p>When the custom layout is selected, all other layouts are ignored. If the custom layout
+is not selected, then the section corresponding to the automatically detected Arduino
+microprocessor will apply. Each section contains a definition referencing one or more
+pre-defined board layouts as well as serial port definitions corresponding to the
+features of specific boards. For example here are the definitions for boards based on
+the 328p microcontroller which are found within the <code class="docutils literal notranslate"><span class="pre">__AVR_Atmega328P__</span></code> section of
+the <code class="docutils literal notranslate"><span class="pre">#ifdef</span></code> statement:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cm">/* Board/layout selection */</span><span class="w"></span>
+<span class="cp">#define AR488_UNO</span>
+<span class="c1">//#define AR488_NANO</span>
+<span class="cm">/*** Serial ports ***/</span><span class="w"></span>
+<span class="c1">//Select HardwareSerial or SoftwareSerial (default = HardwareSerial) ***/</span>
+<span class="c1">// The UNO/NANO default hardware port is 'Serial'</span>
+<span class="c1">// (Comment out #define AR_HW_SERIAL if using SoftwareSerial)</span>
+<span class="cp">#define AR_HW_SERIAL</span>
+<span class="cp">#ifdef AR_HW_SERIAL</span>
+<span class="cp">#define AR_SERIAL_PORT Serial</span>
+<span class="cp">#else</span>
+<span class="c1">// Select software serial port</span>
+<span class="cp">#define AR_SW_SERIAL</span>
+<span class="cp">#endif</span>
+</pre></div>
+</div>
+<p>The section contains definitions for two boards, namely the Uno and the Nano. Only ONE
+of these should be selected by removing the preceding comment characters:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#define AR488_UNO</span>
+<span class="c1">//#define AR488_NANO</span>
+</pre></div>
+</div>
+<p>The default entry is <code class="docutils literal notranslate"><span class="pre">AR488_UNO</span></code>, which selects the pre-defined template for the
+Arduino UNO board in <code class="docutils literal notranslate"><span class="pre">AR488_Hardware.h</span></code>. Selecting <code class="docutils literal notranslate"><span class="pre">AR488_NANO</span></code> will select the
+pre-defined template for the Nano board. In order to compile the sketch for the selected
+board, in addition to selecting the template in <code class="docutils literal notranslate"><span class="pre">Config.h</span></code>, the correct board must be
+selected in the Board Manager within the Arduino IDE (see the <code class="docutils literal notranslate"><span class="pre">Tools</span> <span class="pre">|</span> <span class="pre">Board:</span></code> menu).</p>
+<p>Following this are definitions for the serial port:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#define AR_HW_SERIAL</span>
+<span class="cp">#ifdef AR_HW_SERIAL</span>
+<span class="w">  </span><span class="cp">#define AR_SERIAL_PORT Serial</span>
+<span class="cp">#else</span>
+<span class="w">  </span><span class="c1">// Select software serial port</span>
+<span class="w">  </span><span class="cp">#define AR_SW_SERIAL</span>
+<span class="cp">#endif</span>
+</pre></div>
+</div>
+<p>By default, the most commonly used serial port for a particular board will be enabled.
+In the example above, the hardware port named Serial is selected. To switch between the
+default hardware port and a SoftwareSerial port, it is necessary only to comment out
+<code class="docutils literal notranslate"><span class="pre">#define</span> <span class="pre">AR_HW_SERIAL</span></code> by preceding the line with <code class="docutils literal notranslate"><span class="pre">//</span></code>.</p>
+<p>The section for the 32u4 (Micro/Leonardo) is similar, except by default
+<code class="docutils literal notranslate"><span class="pre">AR_CDC_SERIAL</span></code> is enabled and switching is between the <code class="docutils literal notranslate"><span class="pre">USB</span> <span class="pre">CDC</span></code> port and the
+hardware port <code class="docutils literal notranslate"><span class="pre">Serial1</span></code>.</p>
+<p>The Mega 2560 has 4 hardware serial ports so either <code class="docutils literal notranslate"><span class="pre">Serial</span></code>, <code class="docutils literal notranslate"><span class="pre">Serial1</span></code>, <code class="docutils literal notranslate"><span class="pre">Serial2</span></code>
+or <code class="docutils literal notranslate"><span class="pre">Serial3</span></code> must be selected. Most likely the default port named Serial will be used
+although other options are possible if required. However, please note that the default
+GPIO pin layout for the Mega 2560 board (<code class="docutils literal notranslate"><span class="pre">AR488_MEGA2560_D</span></code>) uses the pins assigned to
+<code class="docutils literal notranslate"><span class="pre">Serial2</span></code> for other purposes, so this cannot be used as a serial port with that
+particular layout definition. However, it can be used with the E1 and E2 definitions.</p>
+<p>For any board, adding the line <code class="docutils literal notranslate"><span class="pre">#define</span> <span class="pre">AR_SW_SERIAL</span></code> and commenting out the
+<code class="docutils literal notranslate"><span class="pre">AR_HW_SERIAL</span></code> and/or <code class="docutils literal notranslate"><span class="pre">AR_CDC_SERIAL</span></code> definitions will invoke the <a class="reference external" href="https://www.arduino.cc/en/Reference/SoftwareSerial">SoftwareSerial</a> library. When a <a class="reference external" href="https://www.arduino.cc/en/Reference/SoftwareSerial">SoftwareSerial</a>
+port is required, then the GPIO pins as well as the baud rate to be used will need to be
+configured in the following <a class="reference internal" href="#software-serial-port-configuration">Software Serial port configuration</a> section.</p>
+<p>Where a board has more than one hardware or CDC serial port available, it will be
+necessary to correctly specify the Arduino name of the serial port to be used. For the
+Uno and Nano this will always be <code class="docutils literal notranslate"><span class="pre">Serial</span></code> because those boards have only one UART and
+therefore only one hardware serial port. Other boards have more than one serial port
+available. For example, on the Pro Micro , enabling the hardware port rather than the
+CDC port will automatically select <code class="docutils literal notranslate"><span class="pre">Serial1</span></code> instead of <code class="docutils literal notranslate"><span class="pre">Serial</span></code>. For the Mega 2560
+there are four choices and the correct port name must be chosen by uncommenting the
+appropriate line, e.g:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#define AR_SERIAL_PORT Serial1</span>
+</pre></div>
+</div>
+<p>The remaining choices must be commented out by preceding them with <code class="docutils literal notranslate"><span class="pre">//</span></code>.</p>
+<p>It should be noted that for any board, only ONE serial port can be used and therefore
+only one port should be enabled.</p>
+<p><strong>It is important to make sure that the correct board is selected in the Arduino IDE
+Boards Manager (Tools =&gt; Board) otherwise the sketch will not compile correctly.</strong></p>
+</section>
+<section id="software-serial-port-configuration">
+<h2>Software Serial port configuration<a class="headerlink" href="#software-serial-port-configuration" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://www.arduino.cc/en/Reference/SoftwareSerial">SoftwareSerial</a> library can be used with any board provided that at least two pins
+are available. One of these must be a <code class="docutils literal notranslate"><span class="pre">PWM</span></code> enabled GPIO pin which is required to
+emulate the transmit (<code class="docutils literal notranslate"><span class="pre">Tx</span></code>) output for the serial two wire connection. The receive
+(<code class="docutils literal notranslate"><span class="pre">Rx</span></code>) pin can be assigned any available GPIO pin.</p>
+<p>Enabling SoftwareSerial can be done by removing the comment characters (<code class="docutils literal notranslate"><span class="pre">//</span></code>)
+preceding the <code class="docutils literal notranslate"><span class="pre">#define</span> <span class="pre">AR_SW_SERIAL</span></code> entry in the relevant board selection section. In
+addition, the pins to be used as well as the board rate will need to be configured in
+the Software Serial Support section as follows:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifdef AR_SW_SERIAL</span>
+<span class="cp">#define AR_SW_SERIAL_RX 53</span>
+<span class="cp">#define AR_SW_SERIAL_TX 51</span>
+<span class="cp">#define AR_SERIAL_BAUD 57600</span>
+<span class="cp">#else</span>
+<span class="cp">#define AR_SERIAL_BAUD 115200</span>
+<span class="cp">#endif</span>
+</pre></div>
+</div>
+<p>The appropriate GPIO pin numbers should be specified after the <code class="docutils literal notranslate"><span class="pre">#define</span>
+<span class="pre">AR_SW_SERIAL_RX</span></code> and the <code class="docutils literal notranslate"><span class="pre">#define</span> <span class="pre">AR_SW_SERIAL_TX</span></code> statements within the <code class="docutils literal notranslate"><span class="pre">#ifdef</span>
+<span class="pre">AR_SW_SERIAL</span></code> clause. The baud rate should be specified here as well after <code class="docutils literal notranslate"><span class="pre">#define</span>
+<span class="pre">AR_SERIAL_BAUD</span></code>. Please note that, when using SoftwareSerial, the maximum baud rate
+that can be achieved reliably is 57600 baud.</p>
+<p>The hardware/CDC serial port baud rate is specified after the <code class="docutils literal notranslate"><span class="pre">#else</span></code> statement. The
+default hardware baud rate is 115200, but any valid baud rate can be specified.</p>
+<p>Please note also, that when using USB CDC ports, the Arduino board will NOT be reset
+when a serial connection is made over USB as is the case with Uno and Nano boards. The
+reset button must be pressed in order to reset the board. The Arduino IDE seems to take
+care of programming the board automatically but when using the Arduino IDE on Linux, the
+modemmanager service will need to be disabled as it interferes with serial ports and
+disrupts the normal operation of the programming process, causing boards to end up in a
+state where they can no longer be programmed over USB. Boards that have been disabled in
+this way can be recovered by uploading a bootloader to them using an AVR programmer.</p>
+<p>Linux Mint (and probably Ubuntu) will have this service enabled and running in the
+background by default. This service is not required but may be useful in the event that
+a serial modem is connected to the PC.</p>
+</section>
+<section id="serial-interrupt-handling">
+<h2>Serial Interrupt Handling<a class="headerlink" href="#serial-interrupt-handling" title="Permalink to this headline">¶</a></h2>
+<p>All AVR boards support <a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/communication/serial/serialevent/">serialEvent</a>.
+This was used in previous versions of AR488 but its use is now deprecated. The Arduino
+has no hardware interrupt to signal a character being received into the Arduino serial
+buffer. The <a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/communication/serial/serialevent/">serialEvent</a> function is actually aliased to the <a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/communication/serial/available/">serial.available()</a>
+function and is executed at the end of every iteration of <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">loop()</span></code>. Non-Arduino
+boards (e.g. STM32) may not support <a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/communication/serial/serialevent/">serialEvent</a> so for reasons of consistency between
+different boards, <a class="reference external" href="https://www.arduino.cc/reference/en/language/functions/communication/serial/serialevent/">serialEvent</a> is not used. Instead, a serial event handler is called
+at the end of every loop iteration.</p>
+<p>When working with programs and scripts (e.g. Python), it should be bourne in mind that
+the Arduino is only 64 bytes in size. Due to the memory constraints of the Arduino, the
+additional processing buffer provided by the AR488 program is also limited to only 128
+bytes. There is also no handshaking between the PC and the Arduino serial port. Although
+the Arduino can keep up pretty well, the serial input buffer can easily overflow with
+loss of characters if data is passed too quickly. This means that a bit of trial and
+error may be required when working with scripts to establish whether and how much delay
+is required between commands. A short delay may sometimes be needed to avoid a buffer
+overflow. The amount of delay will depend on factors such as the interface hardware
+being used, the time taken for the instrument to respond, as well as the GPIB speed of
+the instrument being addressed.</p>
+</section>
+<section id="detection-of-srq-and-atn-pin-states">
+<h2>Detection of SRQ and ATN pin states<a class="headerlink" href="#detection-of-srq-and-atn-pin-states" title="Permalink to this headline">¶</a></h2>
+<p>Arduino AVR boards support interrupts to detect a change in pin states and this has been
+implemented for the UNO, NANO and MEGA boards to improve response. When a supported
+board template has been selected, (see the <a class="reference internal" href="#board-selection-and-serial-port-configuration">Board Selection and serial port
+configuration</a> section) and <code class="docutils literal notranslate"><span class="pre">AR488_CUSTOM</span></code> is not in use, then <code class="docutils literal notranslate"><span class="pre">USE_INTERRUPTS</span></code>
+will be defined and certain interrupts activated by default.</p>
+<p>Other boards may not support interrupts and interrupts cannot be used with the custom
+GPIO pin layout. When <code class="docutils literal notranslate"><span class="pre">AR488_CUSTOM</span></code> is defined and in used, <code class="docutils literal notranslate"><span class="pre">USE_INTERRUPTS</span></code> will
+not get defined and interrupts are not activated. Instead, pin states are detected
+during each iteration of the <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">loop()</span></code> function. When a non-AVR or unsupported
+board is selected as the compilation target, then <code class="docutils literal notranslate"><span class="pre">USE_INTERRUPTS</span></code> should be commented
+out and not used.</p>
+<p>The section in AR488_Config.h looks as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#ifdef __AVR__</span>
+  <span class="o">//</span> <span class="n">For</span> <span class="n">supported</span> <span class="n">boards</span> <span class="n">use</span> <span class="n">interrupt</span> <span class="n">handlers</span>
+  <span class="c1">#if defined (AR488_UNO) || defined (AR488_NANO) || defined (AR488_MEGA2560) || defined (AR488_MEGA32U4)</span>
+    <span class="c1">#ifndef AR488_CUSTOM</span>
+      <span class="c1">#define USE_INTERRUPTS</span>
+        <span class="c1">#endif</span>
+  <span class="c1">#endif</span>
+<span class="c1">#endif</span>
+</pre></div>
+</div>
+<p>The entry should be preceded by <code class="docutils literal notranslate"><span class="pre">//</span></code> to indicate that it has been commented out.
+Interrupts are used by default on supported boards because they usually respond faster
+than in-loop checking.</p>
+</section>
+<section id="macro-support">
+<h2>Macro support<a class="headerlink" href="#macro-support" title="Permalink to this headline">¶</a></h2>
+<p>Macros in this context are short sequences of commands that can be used to accomplish a
+particular task. Controlling an instrument usually requires sequences of commands to be
+sent to the device to configure it, or to perform a particular task. Sometimes such
+sequences are performed frequently or repetitively. In those circumstances, it may be
+more efficient to pre- program the required sequence and then execute it when required
+using a single command.</p>
+<p>The AR488 supports a macro feature which allows user programmed command sequences to be
+run when the interface starts up, as well as up to 9 user defined command sequences to be
+executed at runtime.</p>
+<p>Macros must be programmed before the sketch is compiled and uploaded to the interface.
+Macros can be added to the designated <code class="docutils literal notranslate"><span class="pre">AR488</span> <span class="pre">MACROS</span> <span class="pre">SECTION</span></code> in the <code class="docutils literal notranslate"><span class="pre">AR488_Config.h</span></code>
+file. Both interface <code class="docutils literal notranslate"><span class="pre">++</span></code> commands and direct instrument commands can be included in
+macros. Programming specific instruments is beyond the scope of this manual as commands
+will be specific to each instrument or implemented according to the manufacturers choice
+of programming language or protocol. However, in general, in order to create macros, a
+few simple rules will need to be followed.</p>
+<p>Firstly, macros need to be enabled. In the <code class="docutils literal notranslate"><span class="pre">AR488_Config.h</span></code> file there are two
+definitions under the heading “Enable Macros”:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#define USE_MACROS   // Enable the macro feature</span>
+<span class="c1">#define RUN_STARTUP  // Run MACRO_0 (the startup macro)</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">#define</span> <span class="pre">USE_MACROS</span></code> construct enables or disables the macro feature. When this line
+is commented out by preceding it with <code class="docutils literal notranslate"><span class="pre">//</span></code> then macros are disabled. Removing the
+preceding <code class="docutils literal notranslate"><span class="pre">//</span></code> will enable the macro feature.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">#define</span> <span class="pre">RUN_STARTUP</span></code> statement controls whether the start-up macro will run when
+the interface is powered up or re-started. The start-up macro is designated <code class="docutils literal notranslate"><span class="pre">MACRO_0</span></code>
+and if <code class="docutils literal notranslate"><span class="pre">#define</span> <span class="pre">RUN_STARTUP</span></code> is enabled, this macro will run when the interface is
+powered on or reset.</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">#define</span> <span class="pre">USE_MACROS</span></code> is disabled, then the start-up macro will not be activated
+when the interface is powered up or reset and none of the user macros (1-9) will be
+available at runtime.</p>
+<p>When enabled, <code class="docutils literal notranslate"><span class="pre">MACRO_0</span></code> will run when the interface is powered up or reset but only if
+<code class="docutils literal notranslate"><span class="pre">#define</span> <span class="pre">RUN_STARTUP</span></code> is also enabled. The user macros (1-9) will always be available
+and can be executed by the user at runtime by using the <code class="docutils literal notranslate"><span class="pre">++macro</span></code> command. For more
+information please see the <code class="docutils literal notranslate"><span class="pre">++macro</span></code> command heading in the <a class="reference internal" href="commands.html#command-reference"><span class="std std-ref">Command Reference</span></a>.</p>
+<p>The start-up macro can be used in addition to the interface settings that can be saved
+using the <code class="docutils literal notranslate"><span class="pre">++savecfg</span></code> command, to not only to set up the interface, but also to
+initialise and configure the instrument for a specific function. In this way, instrument
+commands that select function, range and other control features can be sent
+automatically as the interface starts up.</p>
+<p>Unless steps have been taken to disable the automatic reset that occurs when a USB
+serial connection is opened to the interface, the start-up macro will run every time
+that a serial connection is initiated to the interface. On the other hand, disabling
+reset prevents the Arduino from being programmed via USB, so is not advised unless the
+intention is to program the Arduino using a suitable AVR programmer.</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">AR488_Config.h</span></code> file, sketch, below the help information there is a section
+that starts:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cm">/********************************/</span><span class="w"></span>
+<span class="cm">/***** AR488 MACROS SECTION *****/</span><span class="w"></span>
+<span class="cm">/***** vvvvvvvvvvvvvvvvvvvv *****/</span><span class="w"></span>
+<span class="cp">#ifdef USE_MACROS</span>
+</pre></div>
+</div>
+<p>Macros are defined here. The first macro is the startup macro, an example of which might
+be defined as follows:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#define MACRO_0 "\</span>
+<span class="cp">++addr 9\n\</span>
+<span class="cp">++auto 2\n\</span>
+<span class="cp">*RST\n\</span>
+<span class="cp">:func 'volt:ac'</span>
+<span class="s">"</span>
+<span class="cm">/* End of MACRO_0 (Startup macro)*/</span><span class="w"></span>
+</pre></div>
+</div>
+<p>All macro commands comprising the macro must be placed after the <code class="docutils literal notranslate"><span class="pre">\</span></code> on the first line
+and before the final quote on the line before the ending comment. Nothing outside of
+these lines, including the quote marks and the <code class="docutils literal notranslate"><span class="pre">\</span></code> and after the macro name should be
+modified. The final quote mark can be appended to the last command in the sequence if
+preferred. It is shown here on a separate line for clarity. Everything between the two
+quote marks is a string of characters and must be delimited. The <code class="docutils literal notranslate"><span class="pre">\</span></code> character
+indicate to the pre-processor that the string continues on the next line.</p>
+<p>Each command ends with <code class="docutils literal notranslate"><span class="pre">\n</span></code> which is the newline terminator and serves to delimit each
+command. The actual sequence shown above is therefore comprised of 4 commands, each
+command ending with <code class="docutils literal notranslate"><span class="pre">\n</span></code> and then a <code class="docutils literal notranslate"><span class="pre">\</span></code> to indicate that the next command is to
+follow on the next line. Try to avoid leaving or including any unnecessary spaces.</p>
+<p>Each of these commands is either a standard AR488 interface command found in the command
+reference, or an instrument specific command. All AR488 interface Prologix style
+commands begin with <code class="docutils literal notranslate"><span class="pre">++</span></code> so the first two commands set the GPIB <code class="docutils literal notranslate"><span class="pre">address</span></code> to 7 and
+<code class="docutils literal notranslate"><span class="pre">auto</span></code> to 1. The next two commands are direct instrument commands using the SCPI
+protocol, the first of which resets the instrument and the second selects the instrument
+AC voltage function.</p>
+<p>As shown, each command must be terminated with a <code class="docutils literal notranslate"><span class="pre">\n</span></code> (newline) or <code class="docutils literal notranslate"><span class="pre">\r</span></code> (carriage
+return) delimiter character.</p>
+<p>User defined macros that can be run using the <code class="docutils literal notranslate"><span class="pre">++macro</span></code> command follow next, and have
+a similar format, e.g:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#define MACRO_2 "\</span>
+<span class="cp">"</span>
+<span class="cm">/*&lt;-End of macro 2*/</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Once again, the required command sequence must be placed between the two quotes and
+after the first <code class="docutils literal notranslate"><span class="pre">/</span></code> and be terminated with a <code class="docutils literal notranslate"><span class="pre">\n</span></code> or <code class="docutils literal notranslate"><span class="pre">\r</span></code> delimiter. Each line
+must be wrapped with <code class="docutils literal notranslate"><span class="pre">\</span></code>.</p>
+<p>There is a slightly shorter method of defining a macro by placing all commands on a single line. For
+example this:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#define MACRO_1 "++addr 7\n++auto 1\n*RST\n:func 'volt:ac'"</span>
+</pre></div>
+</div>
+<p>Is exactly the same as this:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#define MACRO_1 "\</span>
+<span class="cp">++addr 7\n\</span>
+<span class="cp">++auto 1\n\</span>
+<span class="cp">*RST\n\</span>
+<span class="cp">:func 'volt:ac'\</span>
+<span class="cp">"</span>
+</pre></div>
+</div>
+<p>The first definition is more condensed and requires no line wrap characters, but it is
+perhaps easier to see what is going on in the latter example. Either will function just
+the same and take up the same amount of memory.</p>
+<p>The macro definition area provided in the sketch ends with:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#endif</span>
+<span class="cm">/***** ^^^^^^^^^^^^^^^^^^^^ *****/</span><span class="w"></span>
+<span class="cm">/***** AR488 MACROS SECTION *****/</span><span class="w"></span>
+<span class="cm">/********************************/</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Anything outside of this section does not relate to macros.</p>
+<p>Provided that the commands have been specified correctly and the syntax is correct, the
+sketch should compile and can be uploaded to the Arduino. The start-up macro will run as
+soon as the upload is completed so the instrument should respond immediately. Please be
+aware that, unless serial reset has been disabled, it will run again when a USB serial
+connection is made to the interface. The instrument will probably respond and
+reconfigure itself again.</p>
+<p>Please note that, although AR488 interface <code class="docutils literal notranslate"><span class="pre">++</span></code> commands are verified by the
+interface, and will respond accordingly, there is no sanity checking by the interface of
+any direct instrument commands. These command sequences are sent directly to the
+instrument, which should respond as though the command sequence were typed directly into
+the terminal or sent from a suitable instrument control program. Please consult the
+instrument user manual for information about the behaviour expected in response to
+instrument commands.</p>
+<p>Macro sequences can include any number delimiter separated of commands, but any
+individual command sequence should not exceed 126 characters. This may be particularly
+relevant to SCPI commands which can be composed of multiple instructions separated by
+colons.</p>
+</section>
+<section id="sn7516x-gpib-transceiver-support">
+<h2>SN7516x GPIB transceiver support<a class="headerlink" href="#sn7516x-gpib-transceiver-support" title="Permalink to this headline">¶</a></h2>
+<p>Support for the SN75160 and SN75161 GPIB transceiver integrated circuits can be enabled
+by uncommenting the following line:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//#define SN7516X</span>
+</pre></div>
+</div>
+<p>The pins used to control the ICs are defined in the section that follows:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifdef SN7516X</span>
+<span class="w">  </span><span class="cp">#define SN7516X_TE 6</span>
+<span class="c1">// #define SN75161_DC 13</span>
+<span class="cp">#endif</span>
+</pre></div>
+</div>
+<p>Specify the pin to be used for the <code class="docutils literal notranslate"><span class="pre">SN7516X_TE</span></code> signal. The above example shows pin 6
+being used and this is connected to the talk-enable (<code class="docutils literal notranslate"><span class="pre">TE</span></code>) pin on both ICs. The
+<code class="docutils literal notranslate"><span class="pre">SN75161</span></code> handles the GPIB control signals and in addition to the <code class="docutils literal notranslate"><span class="pre">TE</span></code> pin, also has
+a direction-control (<code class="docutils literal notranslate"><span class="pre">DC</span></code>) pin. This is used to determine controller or device mode
+operation. A GPIO pin can be assigned to drive this pin, in which case the
+<code class="docutils literal notranslate"><span class="pre">SN75151_DC</span></code> definition shown above should be uncommented and an appropriate GPIO pin
+number assigned.</p>
+<p>Alternatively, since the <code class="docutils literal notranslate"><span class="pre">REN</span></code> signal is asserted in controller mode and un-asserted
+in device mode, this signal can be used to drive the <code class="docutils literal notranslate"><span class="pre">DC</span></code> pin of the <code class="docutils literal notranslate"><span class="pre">SN75161</span></code>. In
+this case, the <code class="docutils literal notranslate"><span class="pre">SN75161_DC</span></code> definition should remain commented out and the GPIO pin
+assigned to the REN signal should be connected to both <code class="docutils literal notranslate"><span class="pre">DC</span></code> and <code class="docutils literal notranslate"><span class="pre">REN</span></code> on the
+<code class="docutils literal notranslate"><span class="pre">SN75161</span></code> IC. There is one small caveat when using this configuration. The custom
+<code class="docutils literal notranslate"><span class="pre">++ren</span></code> command, which is used to turn the <code class="docutils literal notranslate"><span class="pre">REN</span></code> line on and off, cannot be used and
+will just return:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Unavailable</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>If a separate GPIO pin is used to control DC then the ++REN command will return the
+status of <code class="docutils literal notranslate"><span class="pre">REN</span></code> as usual. (See <code class="docutils literal notranslate"><span class="pre">++ren</span></code> in the <cite>Custom Commands</cite> section of the
+<a href="#id2"><span class="problematic" id="id3">`Command Reference`_</span></a>).</p>
+</section>
+<section id="bluetooth-hc05-module-options">
+<h2>Bluetooth HC05 module Options<a class="headerlink" href="#bluetooth-hc05-module-options" title="Permalink to this headline">¶</a></h2>
+<p>This section is used to configure Bluetooth HC05 module options and looks like the
+below:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//#define AR_BT_EN 12  // Bluetooth enable and control pin</span>
+<span class="cp">#ifdef AR_BT_EN</span>
+<span class="w"> </span><span class="cp">#define AR_BT_BAUD 115200     </span><span class="c1">// Bluetooth module preferred baud rate</span>
+<span class="w"> </span><span class="cp">#define AR_BT_NAME "AR488-BT" </span><span class="c1">// Bluetooth device name</span>
+<span class="w"> </span><span class="cp">#define AR_BT_CODE "488488"   </span><span class="c1">// Bluetooth pairing code</span>
+<span class="cp">#endif</span>
+</pre></div>
+</div>
+<p>To enable Bluetooth HC05 module auto-configuration, the first line needs to have the
+preceding comment characters (<code class="docutils literal notranslate"><span class="pre">//</span></code>) removed and a GPIO pin assigned. It is then
+necessary to set the configuration parameters, including baud rate, the name that the
+device will be identified with and the pairing code. The <code class="docutils literal notranslate"><span class="pre">AR_BT_BAUD</span></code> parameter must
+not have double quotes around it.</p>
+<p>By default, the name is <code class="docutils literal notranslate"><span class="pre">AR488-BT</span></code> and the pairing code is <code class="docutils literal notranslate"><span class="pre">488488</span></code>. The HC05 module
+only needs connecting to the <code class="docutils literal notranslate"><span class="pre">RX/TX</span></code> pins of a serial port and it will be
+automatically configured with these parameters on interface start-up.</p>
+<p>This feature cannot work with the HC06 module as it does not have management mode or an
+enable pin implemented. Full details of Bluetooth configuration and wiring are included
+in the separate <cite>AR488 Bluetooth Support</cite> supplement.</p>
+</section>
+<section id="debug-options">
+<h2>Debug options<a class="headerlink" href="#debug-options" title="Permalink to this headline">¶</a></h2>
+<p>The AR488 can send certain debug messages to a serial port which can be helpful when
+trying to diagnose a problem. These should not be required or enabled for normal running
+of the interface, but if required for debugging, one or more of the following can be
+enabled by removing the preceding <code class="docutils literal notranslate"><span class="pre">//</span></code> comment characters:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//#define DEBUG1  // getCmd</span>
+<span class="c1">//#define DEBUG2  // setGpibControls</span>
+<span class="c1">//#define DEBUG3  // gpibSendData</span>
+<span class="c1">//#define DEBUG4  // spoll_h</span>
+<span class="c1">//#define DEBUG5  // attnRequired</span>
+<span class="c1">//#define DEBUG6  // EEPROM</span>
+<span class="c1">//#define DEBUG7  // gpibReceiveData</span>
+<span class="c1">//#define DEBUG8  // ppoll_h</span>
+<span class="c1">//#define DEBUG9  // bluetooth</span>
+</pre></div>
+</div>
+<p>By default, debug messages will be sent to the serial port that is used for
+communication. Where the interface provides additional serial ports or where there are
+sufficient GPIO pins available to use <a class="reference external" href="https://www.arduino.cc/en/Reference/SoftwareSerial">SoftwareSerial</a>, it is possible to send debug
+messages to an alternative serial port. This has the advantage that debug messages will
+no longer interfere with normal interface communications.</p>
+<p>The debug messages can be viewed on the alternative <code class="docutils literal notranslate"><span class="pre">debug</span></code> port while normal
+interface operations are in progress on the communications port.</p>
+<p>To enable this feature uncomment the following line in the <code class="docutils literal notranslate"><span class="pre">Debug</span> <span class="pre">Options</span></code> section in
+<code class="docutils literal notranslate"><span class="pre">AR488_Config.h</span></code>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//#define DB_SERIAL_PORT Serial1</span>
+</pre></div>
+</div>
+<p>Set the serial port to the port that will receive the debug messages. Configure the baud
+rate, set the serial port type, and if using <a class="reference external" href="https://www.arduino.cc/en/Reference/SoftwareSerial">SoftwareSerial</a>, the GPIO pins to be
+used, for example:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#define DB_SERIAL_BAUD 57600</span>
+<span class="cp">#define DB_SW_SERIAL</span>
+<span class="cp">#ifdef DB_SW_SERIAL</span>
+<span class="w">  </span><span class="cp">#define DB_SW_SERIAL_RX 53</span>
+<span class="w">  </span><span class="cp">#define DB_SW_SERIAL_TX 51</span>
+<span class="cp">#endif</span>
+</pre></div>
+</div>
+<p>The above will configure a <a class="reference external" href="https://www.arduino.cc/en/Reference/SoftwareSerial">SoftwareSerial</a> port at 57600 baud on GPIO pins 53 and 51.
+Please note that the maximum advisable speed for a <a class="reference external" href="https://www.arduino.cc/en/Reference/SoftwareSerial">SoftwareSerial</a> port is 57600 baud.</p>
+<p>Debug messages do not include messages shown when verbose mode is enabled with the
+<code class="docutils literal notranslate"><span class="pre">++verbose</span></code> command. When the interface is being directly controlled by another
+program, verbose mode should be turned off otherwise verbose messages may interfere with
+normal operations.</p>
+</section>
+<section id="custom-board-layout-section">
+<h2>Custom Board Layout Section<a class="headerlink" href="#custom-board-layout-section" title="Permalink to this headline">¶</a></h2>
+<p>The custom board layout section in the Config.h file can be used to create a custom pin
+layout for the AR488. This can be helpful for non-Arduino boards and where an adjustment
+to the layout is required in order to accommodate additional hardware. By default, the
+definition implements the Uno layout:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#define DIO1  A0  </span><span class="cm">/* GPIB 1  */</span><span class="cp"></span>
+<span class="cp">#define DIO2  A1  </span><span class="cm">/* GPIB 2  */</span><span class="cp"></span>
+<span class="cp">#define DIO3  A2  </span><span class="cm">/* GPIB 3  */</span><span class="cp"></span>
+<span class="cp">#define DIO4  A3  </span><span class="cm">/* GPIB 4  */</span><span class="cp"></span>
+<span class="cp">#define DIO5  A4  </span><span class="cm">/* GPIB 13 */</span><span class="cp"></span>
+<span class="cp">#define DIO6  A5  </span><span class="cm">/* GPIB 14 */</span><span class="cp"></span>
+<span class="cp">#define DIO7  4   </span><span class="cm">/* GPIB 15 */</span><span class="cp"></span>
+<span class="cp">#define DIO8  5   </span><span class="cm">/* GPIB 16 */</span><span class="cp"></span>
+
+<span class="cp">#define IFC   8   </span><span class="cm">/* GPIB 9  */</span><span class="cp"></span>
+<span class="cp">#define NDAC  9   </span><span class="cm">/* GPIB 8  */</span><span class="cp"></span>
+<span class="cp">#define NRFD  10  </span><span class="cm">/* GPIB 7  */</span><span class="cp"></span>
+<span class="cp">#define DAV   11  </span><span class="cm">/* GPIB 6  */</span><span class="cp"></span>
+<span class="cp">#define EOI   12  </span><span class="cm">/* GPIB 5  */</span><span class="cp"></span>
+
+<span class="cp">#define SRQ   2   </span><span class="cm">/* GPIB 10 */</span><span class="cp"></span>
+<span class="cp">#define REN   3   </span><span class="cm">/* GPIB 17 */</span><span class="cp"></span>
+<span class="cp">#define ATN   7   </span><span class="cm">/* GPIB 11 */</span><span class="cp"></span>
+</pre></div>
+</div>
+<p>To make use of a custom layout, <code class="docutils literal notranslate"><span class="pre">AR488_CUSTOM</span></code> must be selected from the list of
+boards at the beginning of the <code class="docutils literal notranslate"><span class="pre">Config.h</span></code> file and the pin numbers/designations in the
+centre column (shown in bold) should be configured as required.</p>
+<p>Please note that on some MCU boards, a number of GPIO pins may not be available as
+inputs and/ or outputs despite a pad or connector being present. Please check the board
+documentation. Sometimes such information is revealed only in online forum discussions
+or blogs.</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">AR488_CUSTOM</span></code> is defined, interrupts cannot be used to detect pin states and
+therefore <code class="docutils literal notranslate"><span class="pre">USE_INTERRUPTS</span></code> will not be defined and interrupts will not be activated.
+Pin states will be checked on every iteration of <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">loop()</span></code> instead.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="commands.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Command Reference</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../index.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Home</div>
+                
+              </div>
+            </a>
+        </div>
+
+        <div class="related-information">
+              Copyright &#169; 2022, John Chajecki |
+          Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+          <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
+            | <a class="muted-link" href="../_sources/main/configuration.rst.txt"
+               rel="nofollow">
+              Show Source
+            </a>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Configuration</a><ul>
+<li><a class="reference internal" href="#firmware-version">Firmware version</a></li>
+<li><a class="reference internal" href="#board-selection-and-serial-port-configuration">Board Selection and serial port configuration</a></li>
+<li><a class="reference internal" href="#software-serial-port-configuration">Software Serial port configuration</a></li>
+<li><a class="reference internal" href="#serial-interrupt-handling">Serial Interrupt Handling</a></li>
+<li><a class="reference internal" href="#detection-of-srq-and-atn-pin-states">Detection of SRQ and ATN pin states</a></li>
+<li><a class="reference internal" href="#macro-support">Macro support</a></li>
+<li><a class="reference internal" href="#sn7516x-gpib-transceiver-support">SN7516x GPIB transceiver support</a></li>
+<li><a class="reference internal" href="#bluetooth-hc05-module-options">Bluetooth HC05 module Options</a></li>
+<li><a class="reference internal" href="#debug-options">Debug options</a></li>
+<li><a class="reference internal" href="#custom-board-layout-section">Custom Board Layout Section</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/furo.js"></script>
+    </body>
+</html>

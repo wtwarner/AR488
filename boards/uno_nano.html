@@ -1,0 +1,379 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Arduino Mega 2560" href="mega2560.html" /><link rel="prev" title="GPIB IEEE-488 connector" href="gpib.html" />
+
+    <meta name="generator" content="sphinx-4.5.0, furo 2021.11.16"/>
+        <title>Arduino Uno and Nano - AR488 0.49.14 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=916d6ed8f59335acffa15474ff504849343d4c76" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=0af69da206d614734f649b27d4cdc2dd6c31f41d" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  body[data-theme="dark"] {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    body:not([data-theme="light"]) {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+  }
+</style></head>
+  <body>
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" />
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="10" y1="12" x2="20" y2="12" />
+      <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">AR488 0.49.14 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">AR488 0.49.14 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../main/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../main/commands.html">Command Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../main/building.html">Building an AR488 GPIB Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../main/tools.html">Working with EZGPIB and KE5FX</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../main/appendixes.html">Appendixes</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="gpib.html">GPIB IEEE-488 connector</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Arduino Uno and Nano</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mega2560.html">Arduino Mega 2560</a></li>
+<li class="toctree-l2"><a class="reference internal" href="micro.html">Arduino Micro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="leonardo_r3.html">Arduino Leonardo R3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../main/xdiag.html">XDIAG command notes</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="arduino-uno-and-nano">
+<h1>Arduino Uno and Nano<a class="headerlink" href="#arduino-uno-and-nano" title="Permalink to this headline">¶</a></h1>
+<section id="connection">
+<h2>Connection<a class="headerlink" href="#connection" title="Permalink to this headline">¶</a></h2>
+<p>These connections are required between the Arduino UNO/Nano and the IEEE488 connector:</p>
+<div class="table-wrapper"><table class="docutils align-default">
+<colgroup>
+<col style="width: 22%"/>
+<col style="width: 53%"/>
+<col style="width: 25%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Arduino</p></th>
+<th class="head"><p>GPIB connector</p></th>
+<th class="head"><p>Function</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>A0</p></td>
+<td><p>1</p></td>
+<td><p>DIO1</p></td>
+</tr>
+<tr class="row-odd"><td><p>A1</p></td>
+<td><p>2</p></td>
+<td><p>DIO2</p></td>
+</tr>
+<tr class="row-even"><td><p>A2</p></td>
+<td><p>3</p></td>
+<td><p>DIO3</p></td>
+</tr>
+<tr class="row-odd"><td><p>A3</p></td>
+<td><p>4</p></td>
+<td><p>DIO4</p></td>
+</tr>
+<tr class="row-even"><td><p>D12</p></td>
+<td><p>5</p></td>
+<td><p>EOI</p></td>
+</tr>
+<tr class="row-odd"><td><p>D11</p></td>
+<td><p>6</p></td>
+<td><p>DAV</p></td>
+</tr>
+<tr class="row-even"><td><p>D10</p></td>
+<td><p>7</p></td>
+<td><p>NRFD</p></td>
+</tr>
+<tr class="row-odd"><td><p>D9</p></td>
+<td><p>8</p></td>
+<td><p>NDAC</p></td>
+</tr>
+<tr class="row-even"><td><p>D8</p></td>
+<td><p>9</p></td>
+<td><p>IFC</p></td>
+</tr>
+<tr class="row-odd"><td><p>D2</p></td>
+<td><p>10</p></td>
+<td><p>SRQ</p></td>
+</tr>
+<tr class="row-even"><td><p>D7</p></td>
+<td><p>11</p></td>
+<td><p>ATN</p></td>
+</tr>
+<tr class="row-odd"><td><p>GND</p></td>
+<td><p>12</p></td>
+<td><p>Shield</p></td>
+</tr>
+<tr class="row-even"><td><p>A4</p></td>
+<td><p>13</p></td>
+<td><p>DIO5</p></td>
+</tr>
+<tr class="row-odd"><td><p>A5</p></td>
+<td><p>14</p></td>
+<td><p>DIO6</p></td>
+</tr>
+<tr class="row-even"><td><p>D4</p></td>
+<td><p>15</p></td>
+<td><p>DIO7</p></td>
+</tr>
+<tr class="row-odd"><td><p>D5</p></td>
+<td><p>16</p></td>
+<td><p>DIO8</p></td>
+</tr>
+<tr class="row-even"><td><p>D3</p></td>
+<td><p>17</p></td>
+<td><p>REN</p></td>
+</tr>
+<tr class="row-odd"><td><p>GND</p></td>
+<td><p>18,19,20,21,22,23</p></td>
+<td><p>GND</p></td>
+</tr>
+</tbody>
+</table></div>
+<section id="wiring-diagram">
+<h3>Wiring diagram<a class="headerlink" href="#wiring-diagram" title="Permalink to this headline">¶</a></h3>
+<img alt="../_images/wiring_uno.png" src="../_images/wiring_uno.png"/>
+<p>When using SN75160 and SN75161 integrated circuits, the connections involve at least one
+extra pin to control the talk-enable (<code class="docutils literal notranslate"><span class="pre">TE</span></code>) pin of the IC. The <code class="docutils literal notranslate"><span class="pre">PE</span></code> pin on the
+SN75160 is connected to VCC to maintain a 3-state outputs when <code class="docutils literal notranslate"><span class="pre">TE</span></code> is high.
+Connecting <code class="docutils literal notranslate"><span class="pre">PE</span></code> to ground will allow the outputs to function in pullup-enable mode
+when <code class="docutils literal notranslate"><span class="pre">TE</span></code> is high.</p>
+<p>On the SN75161, the <code class="docutils literal notranslate"><span class="pre">DC</span></code> pin can be connected to a separate GPIO pin on the Uno/Nano,
+or, since ren is always asserted when in controller mode and de-asserted in device mode,
+to the GPIO pin used for the <code class="docutils literal notranslate"><span class="pre">REN</span></code> signal.</p>
+<img alt="../_images/wiring_uno_sn7516x.png" src="../_images/wiring_uno_sn7516x.png"/>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="mega2560.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Arduino Mega 2560</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="gpib.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">GPIB IEEE-488 connector</div>
+                
+              </div>
+            </a>
+        </div>
+
+        <div class="related-information">
+              Copyright &#169; 2022, John Chajecki |
+          Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+          <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
+            | <a class="muted-link" href="../_sources/boards/uno_nano.rst.txt"
+               rel="nofollow">
+              Show Source
+            </a>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Arduino Uno and Nano</a><ul>
+<li><a class="reference internal" href="#connection">Connection</a><ul>
+<li><a class="reference internal" href="#wiring-diagram">Wiring diagram</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/furo.js"></script>
+    </body>
+</html>
