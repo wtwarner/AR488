@@ -42,8 +42,8 @@
 /*** UNO and NANO boards ***/
 #elif __AVR_ATmega328P__
   /* Board/layout selection */
-  #define AR488_UNO
-  //#define AR488_NANO
+  //#define AR488_UNO
+  #define AR488_NANO
 
 /*** MEGA 32U4 based boards (Micro, Leonardo) ***/
 #elif __AVR_ATmega32U4__
@@ -196,7 +196,7 @@
 
 
 /***** 8-way address DIP switch *****/
-#define DIP_SWITCH
+//#define DIP_SWITCH
 #ifdef DIP_SWITCH
 #define DIP_SW_1  A0
 #define DIP_SW_2  A1
